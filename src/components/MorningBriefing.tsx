@@ -5,7 +5,7 @@ import { Mascot } from "./Mascot";
 import { useSpeech } from "@/hooks/useSpeech";
 import { morningBriefing } from "@/data/dashboardData";
 import { cn } from "@/lib/utils";
-import mascotVideo from "@/assets/mascot-animated.mp4.asset.json";
+import mascotVideo from "@/assets/mascot-animated.mp4";
 
 export const MorningBriefing = ({ onAction }: { onAction?: (action: string) => void }) => {
   const { supported, speaking, speak, stop } = useSpeech();
@@ -56,7 +56,7 @@ export const MorningBriefing = ({ onAction }: { onAction?: (action: string) => v
             )}
             {hasPlayed ? (
               <video
-                src={mascotVideo.url}
+                src={mascotVideo}
                 autoPlay
                 loop
                 muted
