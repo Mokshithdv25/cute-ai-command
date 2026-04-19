@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { TopNav } from "@/components/TopNav";
 import { MorningBriefing } from "@/components/MorningBriefing";
+import { CalendarAgenda } from "@/components/CalendarAgenda";
+import { KeyMetrics } from "@/components/KeyMetrics";
 import { AICommandCenter } from "@/components/AICommandCenter";
 import { ActionCard } from "@/components/ActionCard";
 import { PipelineGrid } from "@/components/PipelineGrid";
-import { pendingActions, todayMetrics } from "@/data/dashboardData";
+import { pendingActions } from "@/data/dashboardData";
 import { toast } from "@/hooks/use-toast";
-import { Sparkles, TrendingUp, Users, Calendar } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 const Index = () => {
   const [thinking, setThinking] = useState(false);
@@ -41,11 +43,19 @@ const Index = () => {
       <TopNav />
 
       <main className="container py-6 md:py-8 space-y-8">
+        {/* 1. AI morning briefing */}
         <MorningBriefing onAction={(a) => setPrefill(a)} />
 
+        {/* 2. Calendar agenda — time + location */}
+        <CalendarAgenda />
+
+        {/* 3. Key metrics + monthly target progress */}
+        <KeyMetrics />
+
+        {/* 4. AI command center */}
         <AICommandCenter onSubmit={handleCommand} thinking={thinking} prefill={prefill} />
 
-        {/* Pending actions */}
+        {/* 5. Ready-to-run AI actions */}
         <section>
           <div className="flex items-end justify-between mb-4">
             <div>
@@ -73,28 +83,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Today snapshot */}
-        <section className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {[
-            { label: "Hot leads", value: todayMetrics.leadsHot, icon: TrendingUp, tone: "text-destructive bg-destructive/10" },
-            { label: "Warm pipeline", value: todayMetrics.leadsWarm, icon: Users, tone: "text-primary bg-primary/10" },
-            { label: "Today's appts", value: todayMetrics.appointments, icon: Calendar, tone: "text-ai bg-ai/10" },
-            { label: "MLS matches", value: todayMetrics.newMlsMatches, icon: Sparkles, tone: "text-success bg-success/10" },
-          ].map((m, i) => (
-            <div
-              key={m.label}
-              className="rounded-2xl border border-border bg-card p-4 hover:shadow-card transition-shadow animate-fade-in-up"
-              style={{ animationDelay: `${i * 60}ms` }}
-            >
-              <div className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${m.tone}`}>
-                <m.icon className="h-4 w-4" />
-              </div>
-              <div className="mt-3 text-3xl font-display font-extrabold">{m.value}</div>
-              <div className="text-xs text-muted-foreground font-medium">{m.label}</div>
-            </div>
-          ))}
-        </section>
-
+        {/* 6. Pipeline overview */}
         <PipelineGrid />
 
         <footer className="pt-4 pb-8 text-center text-xs text-muted-foreground">
