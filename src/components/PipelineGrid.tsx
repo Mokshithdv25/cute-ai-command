@@ -27,7 +27,9 @@ export const PipelineGrid = () => {
           return (
             <button
               key={m.label}
-              className="group relative text-left rounded-2xl border border-border bg-card p-4 hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 overflow-hidden animate-fade-in-up"
+              type="button"
+              aria-label={`Drill into ${m.label}`}
+              className="group relative text-left rounded-2xl border border-border bg-card p-4 cursor-pointer hover:shadow-elevated hover:-translate-y-0.5 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-all duration-300 overflow-hidden animate-fade-in-up"
               style={{ animationDelay: `${i * 60}ms` }}
             >
               <div className={cn("absolute -top-8 -right-8 h-24 w-24 rounded-full bg-gradient-to-br opacity-60 group-hover:opacity-100 transition-opacity", toneMap[m.tone])} />
