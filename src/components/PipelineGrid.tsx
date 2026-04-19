@@ -17,8 +17,8 @@ export const PipelineGrid = () => {
     <section>
       <div className="flex items-end justify-between mb-4">
         <div>
-          <h2 className="font-display font-bold text-xl">Your pipeline at a glance</h2>
-          <p className="text-sm text-muted-foreground">Tap any module to dive deeper. AI is monitoring all of them in real time.</p>
+          <h2 className="font-display font-bold text-xl">Your agentic workspace</h2>
+          <p className="text-sm text-muted-foreground">Lead scoring, follow-ups, deals — your AI team is running them in the background.</p>
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
