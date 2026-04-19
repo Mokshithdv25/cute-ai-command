@@ -65,17 +65,22 @@ export const KeyMetrics = () => {
       {/* Top stat tiles */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         {stats.map((m, i) => (
-          <div
+          <button
             key={m.label}
-            className="rounded-2xl border border-border bg-card p-4 hover:shadow-card hover:-translate-y-0.5 transition-all animate-fade-in-up"
+            type="button"
+            className="group text-left rounded-2xl border border-border bg-card p-4 cursor-pointer hover:shadow-elevated hover:-translate-y-0.5 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-all animate-fade-in-up relative overflow-hidden"
             style={{ animationDelay: `${i * 50}ms` }}
+            aria-label={`Drill into ${m.label}`}
           >
             <div className={cn("inline-flex h-9 w-9 items-center justify-center rounded-xl", m.tone, m.pulse && "animate-pulse")}>
               <m.icon className="h-4 w-4" />
             </div>
             <div className="mt-3 text-3xl font-display font-extrabold tabular-nums">{m.value}</div>
             <div className="text-xs text-muted-foreground font-medium leading-tight">{m.label}</div>
-          </div>
+            <span className="absolute top-3 right-3 text-[10px] font-semibold uppercase tracking-wider text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+              Drill in →
+            </span>
+          </button>
         ))}
       </div>
 
