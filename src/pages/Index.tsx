@@ -7,14 +7,15 @@ import { AICommandCenter } from "@/components/AICommandCenter";
 import { ActionCard } from "@/components/ActionCard";
 import { AutonomousLog } from "@/components/AutonomousLog";
 import { PipelineGrid } from "@/components/PipelineGrid";
-import { pendingActions } from "@/data/dashboardData";
+import { useAgentActions } from "@/hooks/useAgentActions";
+import { isInsforgeConfigured } from "@/lib/insforge";
 import { toast } from "@/hooks/use-toast";
 import { Sparkles } from "lucide-react";
 
 const Index = () => {
   const [thinking, setThinking] = useState(false);
   const [prefill, setPrefill] = useState<string>("");
-  const [actions, setActions] = useState(pendingActions);
+  const { actions, isLive, setActionStatus } = useAgentActions();
 
   const handleCommand = (prompt: string) => {
     setThinking(true);
@@ -28,15 +29,33 @@ const Index = () => {
     }, 1500);
   };
 
-  const handleExecute = (id: string) => {
+  const handleExecute = async (id: string) => {
     toast({ title: "Executing", description: "Action is running. I'll log it in the CRM." });
+    if (isInsforgeConfigured()) {
+      try {
+        await setActionStatus(id, "completed");
+      } catch (e) {
+        toast({
+          title: "Could not sync to InsForge",
+          description: e instanceof Error ? e.message : "Try again.",
+          variant: "destructive",
+        });
+      }
+    }
   };
   const handleRevise = (id: string) => {
     const a = actions.find((x) => x.id === id);
     if (a) setPrefill(`Revise: ${a.title} — `);
   };
-  const handleCancel = (id: string) => {
+  const handleCancel = async (id: string) => {
     toast({ title: "Cancelled", description: "No worries. I won't run that one." });
+    if (isInsforgeConfigured()) {
+      try {
+        await setActionStatus(id, "cancelled");
+      } catch {
+        /* toast already shown */
+      }
+    }
   };
 
   return (
@@ -66,6 +85,9 @@ const Index = () => {
               </h2>
               <p className="text-sm text-muted-foreground">
                 Review, execute, or revise. Nothing happens without your approval.
+                {isLive ? (
+                  <span className="ml-2 text-success font-medium">· Synced from InsForge</span>
+                ) : null}
               </p>
             </div>
             <span className="text-xs font-medium text-muted-foreground">{actions.length} actions queued</span>
