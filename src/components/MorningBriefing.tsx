@@ -47,27 +47,32 @@ export const MorningBriefing = ({ onAction }: { onAction?: (action: string) => v
       <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-primary/20 blur-3xl animate-blob" />
       <div className="pointer-events-none absolute -bottom-24 -left-12 h-72 w-72 rounded-full bg-ai/20 blur-3xl animate-blob" style={{ animationDelay: "3s" }} />
 
-      <div className="relative grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-6 p-6 md:p-8 items-center">
-        {/* Mascot — animated video while speaking, static otherwise */}
-        <div className="flex justify-center lg:justify-start">
-          <div className="relative h-[140px] w-[140px] flex items-center justify-center">
-            {speaking && (
-              <span className="absolute inset-0 rounded-full border-2 border-primary/40 animate-pulse-ring" />
-            )}
-            {hasPlayed ? (
-              <video
-                src={mascotVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="h-[140px] w-[140px] object-contain drop-shadow-[0_8px_24px_hsl(var(--primary)/0.25)]"
-              />
-            ) : (
-              <Mascot variant="hero" size={120} glow animate />
-            )}
-          </div>
+      {/* Full-width mascot video banner when playing */}
+      {hasPlayed && (
+        <div className="relative w-full overflow-hidden border-b border-border/60">
+          {speaking && (
+            <span className="pointer-events-none absolute inset-0 ring-2 ring-primary/30 animate-pulse-ring" />
+          )}
+          <video
+            src={mascotVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-auto max-h-[320px] object-cover object-center"
+          />
         </div>
+      )}
+
+      <div className="relative grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-6 p-6 md:p-8 items-center">
+        {/* Static mascot only before playing */}
+        {!hasPlayed && (
+          <div className="flex justify-center lg:justify-start">
+            <div className="relative h-[140px] w-[140px] flex items-center justify-center">
+              <Mascot variant="hero" size={120} glow animate />
+            </div>
+          </div>
+        )}
 
         {/* Content */}
         <div className="min-w-0">
