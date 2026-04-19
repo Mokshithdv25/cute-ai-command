@@ -5,6 +5,7 @@ import { CalendarAgenda } from "@/components/CalendarAgenda";
 import { KeyMetrics } from "@/components/KeyMetrics";
 import { AICommandCenter } from "@/components/AICommandCenter";
 import { ActionCard } from "@/components/ActionCard";
+import { AutonomousLog } from "@/components/AutonomousLog";
 import { PipelineGrid } from "@/components/PipelineGrid";
 import { pendingActions } from "@/data/dashboardData";
 import { toast } from "@/hooks/use-toast";
@@ -83,8 +84,11 @@ const Index = () => {
           </div>
         </section>
 
-        {/* 6. Pipeline overview */}
-        <PipelineGrid />
+        {/* 6. Pipeline overview + autonomous log */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 items-start">
+          <PipelineGrid />
+          <AutonomousLog />
+        </div>
 
         <footer className="pt-4 pb-8 text-center text-xs text-muted-foreground">
           Lofty AOS · The first agentic AI operating system for real estate
