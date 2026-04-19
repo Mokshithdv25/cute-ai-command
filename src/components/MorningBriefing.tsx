@@ -49,7 +49,10 @@ export const MorningBriefing = ({ onAction }: { onAction?: (action: string) => v
 
       {/* Full-width mascot video banner when playing */}
       {hasPlayed && (
-        <div className="relative w-full overflow-hidden border-b border-border/60">
+        <div
+          className="relative w-full overflow-hidden border-b border-border/60 flex items-center justify-center"
+          style={{ backgroundColor: "hsl(243 84% 54%)" }}
+        >
           {speaking && (
             <span className="pointer-events-none absolute inset-0 ring-2 ring-primary/30 animate-pulse-ring" />
           )}
@@ -59,7 +62,7 @@ export const MorningBriefing = ({ onAction }: { onAction?: (action: string) => v
             loop
             muted
             playsInline
-            className="w-full h-auto max-h-[320px] object-cover object-center"
+            className="w-auto max-h-[420px] max-w-full object-contain"
           />
         </div>
       )}
