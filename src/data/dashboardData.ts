@@ -225,10 +225,10 @@ export const todayMetrics = {
 };
 
 export const pipeline = [
-  { label: "Need Keep In Touch", count: 8, tone: "warning" as const, hint: "Birthdays + 30/60/90 day check-ins" },
-  { label: "Today's Opportunities", count: 3, tone: "primary" as const, hint: "AI-flagged high-intent leads" },
-  { label: "Transactions", count: 4, tone: "success" as const, hint: "1 near deadline" },
-  { label: "Appointments", count: 3, tone: "ai" as const, hint: "Patels 10am · Chen 2:30 · Closing 5pm" },
-  { label: "My Listings", count: 5, tone: "primary" as const, hint: "1 needs price action" },
-  { label: "Hot Sheets", count: 7, tone: "destructive" as const, hint: "New MLS matches overnight" },
+  { label: "Lead Scoring", count: 12, tone: "destructive" as const, hint: "12 leads scored 80+ overnight" },
+  { label: "Agentic Follow-ups", count: 5, tone: "ai" as const, hint: "AI drafted · awaiting your nod" },
+  { label: "Deal Management", count: 4, tone: "success" as const, hint: "1 closing this week" },
+  { label: "Smart Plans", count: 6, tone: "primary" as const, hint: "Drip campaigns running" },
+  { label: "Property Matching", count: 7, tone: "warning" as const, hint: "New MLS matches for buyers" },
+  { label: "Keep In Touch", count: 8, tone: "primary" as const, hint: "Birthdays + check-ins due" },
 ];

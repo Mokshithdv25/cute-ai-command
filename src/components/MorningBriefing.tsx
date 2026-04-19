@@ -162,18 +162,6 @@ export const MorningBriefing = ({ onAction }: { onAction?: (action: string) => v
           )}
         </div>
       </div>
-
-      {/* Highlights row */}
-      <div className="relative grid grid-cols-2 md:grid-cols-5 gap-px bg-border/50 border-t border-border/60">
-        {morningBriefing.items.map((item) => (
-          <div key={item.id} className="bg-card/70 backdrop-blur p-4 text-sm hover:bg-card transition-colors">
-            <div className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">
-              {item.type}
-            </div>
-            <div className="text-foreground/90 leading-snug">{item.text}</div>
-          </div>
-        ))}
-      </div>
     </section>
   );
 };

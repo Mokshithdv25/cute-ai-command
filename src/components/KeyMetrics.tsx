@@ -53,9 +53,9 @@ export const KeyMetrics = () => {
         <div>
           <h2 className="font-display font-bold text-xl flex items-center gap-2">
             <Target className="h-5 w-5 text-primary" />
-            Your day at a glance
+            Today's pulse
           </h2>
-          <p className="text-sm text-muted-foreground">Live metrics + monthly target progress.</p>
+          <p className="text-sm text-muted-foreground">AI-scored lead signals + monthly GCI pacing.</p>
         </div>
         <span className="text-xs font-medium text-muted-foreground hidden md:inline">
           Updated {new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}
