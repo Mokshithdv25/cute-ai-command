@@ -50,7 +50,7 @@ export const MorningBriefing = ({ onAction }: { onAction?: (action: string) => v
       {/* Full-width mascot video banner — always visible */}
       <div
         className="relative w-full overflow-hidden border-b border-border/60 flex items-center justify-center"
-        style={{ backgroundColor: "hsl(243 84% 54%)" }}
+        style={{ backgroundColor: "#3F45EE" }}
       >
         {speaking && (
           <span className="pointer-events-none absolute inset-0 ring-2 ring-primary/30 animate-pulse-ring" />
