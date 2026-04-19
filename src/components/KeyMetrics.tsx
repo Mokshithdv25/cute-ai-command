@@ -97,10 +97,12 @@ export const KeyMetrics = () => {
           {monthlyGoals.map((g, i) => {
             const pct = Math.min(100, Math.round((g.current / g.target) * 100));
             return (
-              <div
+              <button
                 key={g.label}
-                className="flex items-center gap-3 rounded-2xl bg-card border border-border/60 p-3 animate-fade-in-up"
+                type="button"
+                className="group flex items-center gap-3 rounded-2xl bg-card border border-border/60 p-3 text-left cursor-pointer hover:border-primary/40 hover:shadow-card hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-all animate-fade-in-up"
                 style={{ animationDelay: `${i * 80}ms` }}
+                aria-label={`Drill into ${g.label}`}
               >
                 <div className="relative">
                   <ProgressRing pct={pct} tone={g.tone} />
@@ -108,14 +110,17 @@ export const KeyMetrics = () => {
                     {pct}%
                   </span>
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide truncate">{g.label}</div>
                   <div className="font-display font-bold text-lg tabular-nums">
                     {g.current}
                     <span className="text-sm text-muted-foreground font-medium"> / {g.target}</span>
                   </div>
                 </div>
-              </div>
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                  →
+                </span>
+              </button>
             );
           })}
         </div>
