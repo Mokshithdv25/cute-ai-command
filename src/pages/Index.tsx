@@ -43,9 +43,48 @@ const Index = () => {
       <TopNav />
 
       <main className="container py-6 md:py-8 space-y-8">
+        {/* 1. AI morning briefing */}
         <MorningBriefing onAction={(a) => setPrefill(a)} />
 
+        {/* 2. Calendar agenda — time + location */}
+        <CalendarAgenda />
+
+        {/* 3. Key metrics + monthly target progress */}
+        <KeyMetrics />
+
+        {/* 4. AI command center */}
         <AICommandCenter onSubmit={handleCommand} thinking={thinking} prefill={prefill} />
+
+        {/* 5. Ready-to-run AI actions */}
+        <section>
+          <div className="flex items-end justify-between mb-4">
+            <div>
+              <h2 className="font-display font-bold text-xl flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-ai" />
+                Ready to run
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Review, execute, or revise. Nothing happens without your approval.
+              </p>
+            </div>
+            <span className="text-xs font-medium text-muted-foreground">{actions.length} actions queued</span>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {actions.map((a, i) => (
+              <ActionCard
+                key={a.id}
+                action={a}
+                index={i}
+                onExecute={handleExecute}
+                onRevise={handleRevise}
+                onCancel={handleCancel}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* 6. Pipeline overview */}
+        <PipelineGrid />
 
         {/* Pending actions */}
         <section>
