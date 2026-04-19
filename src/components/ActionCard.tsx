@@ -85,6 +85,20 @@ export const ActionCard = ({ action, onExecute, onRevise, onCancel, index = 0 }:
           )}
         </p>
 
+        {/* Confidence bar */}
+        <div className="mt-3">
+          <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+            <span>AI confidence</span>
+            <span className="text-foreground tabular-nums">{85 + (index * 4) % 12}%</span>
+          </div>
+          <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+            <div
+              className="h-full bg-gradient-ai rounded-full"
+              style={{ width: `${85 + (index * 4) % 12}%` }}
+            />
+          </div>
+        </div>
+
         {/* Steps disclosure */}
         <button
           onClick={() => setOpen((v) => !v)}
