@@ -88,6 +88,30 @@ export const MorningBriefing = ({ onAction }: { onAction?: (action: string) => v
             )}
           </p>
 
+          {/* Inline stat chips */}
+          <div className="mt-4 flex flex-wrap gap-2">
+            {morningBriefing.stats.map((s) => (
+              <span
+                key={s.label}
+                className={cn(
+                  "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold backdrop-blur",
+                  s.tone === "primary" && "bg-primary/10 text-primary border-primary/20",
+                  s.tone === "ai" && "bg-ai/10 text-ai border-ai/20",
+                  s.tone === "success" && "bg-success/10 text-success border-success/20",
+                  s.tone === "warning" && "bg-warning/10 text-warning border-warning/20",
+                  s.tone === "destructive" && "bg-destructive/10 text-destructive border-destructive/20",
+                )}
+              >
+                <span className="font-display font-extrabold tabular-nums text-sm">{s.value}</span>
+                <span className="opacity-80">{s.label}</span>
+              </span>
+            ))}
+          </div>
+
+          <p className="mt-3 text-xs font-medium text-muted-foreground italic">
+            {morningBriefing.agendaLine}
+          </p>
+
           {/* Suggested actions */}
           <div className="mt-4 flex flex-wrap gap-2">
             {morningBriefing.suggestedActions.map((a) => (

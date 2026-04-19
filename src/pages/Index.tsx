@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { TopNav } from "@/components/TopNav";
 import { MorningBriefing } from "@/components/MorningBriefing";
+import { CalendarAgenda } from "@/components/CalendarAgenda";
+import { KeyMetrics } from "@/components/KeyMetrics";
 import { AICommandCenter } from "@/components/AICommandCenter";
 import { ActionCard } from "@/components/ActionCard";
 import { PipelineGrid } from "@/components/PipelineGrid";
-import { pendingActions, todayMetrics } from "@/data/dashboardData";
+import { pendingActions } from "@/data/dashboardData";
 import { toast } from "@/hooks/use-toast";
-import { Sparkles, TrendingUp, Users, Calendar } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 const Index = () => {
   const [thinking, setThinking] = useState(false);
