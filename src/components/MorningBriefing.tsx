@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Volume2, Pause, Play, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Mascot } from "./Mascot";
 import { useSpeech } from "@/hooks/useSpeech";
 import { morningBriefing } from "@/data/dashboardData";
 import { cn } from "@/lib/utils";
+import mascotVideo from "@/assets/mascot-animated.mp4.asset.json";
 
 export const MorningBriefing = ({ onAction }: { onAction?: (action: string) => void }) => {
   const { supported, speaking, speak, stop } = useSpeech();
@@ -47,13 +48,24 @@ export const MorningBriefing = ({ onAction }: { onAction?: (action: string) => v
       <div className="pointer-events-none absolute -bottom-24 -left-12 h-72 w-72 rounded-full bg-ai/20 blur-3xl animate-blob" style={{ animationDelay: "3s" }} />
 
       <div className="relative grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-6 p-6 md:p-8 items-center">
-        {/* Mascot */}
+        {/* Mascot — animated video while speaking, static otherwise */}
         <div className="flex justify-center lg:justify-start">
-          <div className="relative">
+          <div className="relative h-[140px] w-[140px] flex items-center justify-center">
             {speaking && (
               <span className="absolute inset-0 rounded-full border-2 border-primary/40 animate-pulse-ring" />
             )}
-            <Mascot variant="hero" size={120} glow animate />
+            {hasPlayed ? (
+              <video
+                src={mascotVideo.url}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="h-[140px] w-[140px] object-contain drop-shadow-[0_8px_24px_hsl(var(--primary)/0.25)]"
+              />
+            ) : (
+              <Mascot variant="hero" size={120} glow animate />
+            )}
           </div>
         </div>
 
